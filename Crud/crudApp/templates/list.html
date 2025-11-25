@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Item List</title>
+  </head>
+  <body>
+    <h1>Items</h1>
+    <a href="{% url 'itemCreate' %}">Add New Item</a>
+
+    {% if items %}
+    <ul>
+      {% for item in items %}
+      <li>
+        {{ item.name }} - {{ item.price }}
+        <a href="{% url 'itemUpdate' pk=item.id %}">Update</a>
+        <a href="{% url 'itemDelete' pk=item.id %}">Delete</a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>No items found. <a href="{% url 'itemCreate' %}">Create one</a></p>
+    {% endif %}
+  </body>
+</html>
